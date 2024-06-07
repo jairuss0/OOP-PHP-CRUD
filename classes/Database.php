@@ -12,8 +12,11 @@ class Db{
     // get the database connection
     protected function connected(){
         try{
+            // data source name
             $db = 'mysql:host='.$this->host.';dbname='.$this->dbname;
+            // create a PDO instance
             $this->conn = new PDO($db,$this->user,$this->password);
+            // PDO query
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             
         }catch(PDOException $e){

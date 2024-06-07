@@ -13,6 +13,10 @@
         $job = $_POST['job'];
 
         $user->insertUser($fname,$mname,$lname,$age,$dob,$email,$job);
+        
+        if($user){
+            echo "user created!";
+        }
     }
 
 

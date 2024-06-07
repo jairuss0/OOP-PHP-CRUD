@@ -3,11 +3,11 @@
 
 class User extends Query{
 
-    // send the user input into the query method
+    // return the query data from database
     public function DisplayData(){
         return $this->fetchData();
     }
-
+    // send the user credentials to query class
     public function insertUser($fname,$mname,$lname,$age,$dob,$email,$job){
         $this->insertData($fname,$mname,$lname,$age,$dob,$email,$job);
     }   

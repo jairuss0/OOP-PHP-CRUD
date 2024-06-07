@@ -10,11 +10,11 @@ class Query extends Db{
     //fetch data from database
     protected function fetchData(){
         try{
-            $sql = "SELECT * FROM user";
+            $sql = "SELECT * FROM user ORDER BY id DESC";
             $stmt = $this->connected()->prepare($sql);
             $stmt->execute();
             // return the statement result as array
-            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         }catch(PDOException $e){
             echo "Error: " . $e->getMessage();
@@ -24,13 +24,19 @@ class Query extends Db{
     // insert data from the database
     protected function insertData($fname,$mname,$lname,$age,$dob,$email,$job){
         try{
-            $sql = "INSERT INTO user (firstName,middleName,lastName,age,dob,email,job) VALUES('$fname','$mname','$lname','$age','$dob','$email','$job')";
-            $success = $this->connected()->exec($sql); // use exec() because no result are returned
+            $sql = "INSERT INTO user (firstName,middleName,lastName,age,dob,email,job) VALUES(
+            :firstName,:middleName,:lastName,:age,:dob,:email,:job)";
+            $stmt = $this->connected()->prepare($sql);
+            $succes = $stmt->execute(['firstName' => $fname, 
+            'middleName' => $mname, 'lastName' => $lname, 'age' => $age, 
+            'dob' => $dob, 'email' => $email, 
+            'job' => $job, ]);
 
-            if($success){
-
-            }else{
-
+            if($succes){
+                header('Location:../pages/dashboard.php');
+            }
+            else{
+                header('Location:../pages/dashboard.php');
             }
             
         }catch(PDOException $e){

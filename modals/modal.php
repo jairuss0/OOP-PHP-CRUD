@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control" id="dob" name="dob" required placeholder="">
+                                <input type="date" class="form-control" id="dob" name="dob" required autofocus="off"autocomplete="off">
                                 <label for="dob">DateOfBirth</label>
                             </div>
                         </div>
