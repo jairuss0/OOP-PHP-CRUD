@@ -1,6 +1,11 @@
 <?php
+
+include_once("../classes/User.php");
 include_once("../includes/readData.inc.php");
 include_once("../includes/insertUser.inc.php");
+include_once("../includes/updateUser.inc.php");
+include_once("../includes/deleteUser.inc.php");
+include_once("../includes/deleteUser.inc.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +14,10 @@ include_once("../includes/insertUser.inc.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIMPLE CRUD OOP</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
-
+    
 </head>
 
 <body>
@@ -46,18 +52,23 @@ include_once("../includes/insertUser.inc.php");
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($row as $data): ?>
-                            <tr>
-                                <th scope="row"><?=$data['id']?></th>
-                                <td><?=$data['firstName']?></td>
-                                <td><?=$data['middleName']?></td>
-                                <td><?=$data['lastName']?></td>
-                                <td><?=$data['age']?></td>
-                                <td><?=$data['dob']?></td>
-                                <td><?=$data['email']?></td>
-                                <td><?=$data['job']?></td>
-                                <td><button>Edit</button><button>Delete</button></td>
-                            </tr>
+                            <?php foreach ($row as $data) : ?>
+                                <tr>
+                                    <td><?= $data['id']?></td>
+                                    <td><?= $data['firstName'] ?></td>
+                                    <td><?= $data['middleName'] ?></td>
+                                    <td><?= $data['lastName'] ?></td>
+                                    <td><?= $data['age'] ?></td>
+                                    <td><?= $data['dob'] ?></td>
+                                    <td><?= $data['email'] ?></td>
+                                    <td><?= $data['job'] ?></td>
+                                    <td><button type="button" class="btn btn-success updateBtn"  data-bs-toggle="modal" data-bs-target="#updateUser">
+                                             Update
+                                        </button>
+                                        <button type="button" class="btn btn-danger deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteUser">
+                                             Delete
+                                        </button></td>
+                                </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -73,14 +84,14 @@ include_once("../includes/insertUser.inc.php");
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable({
-                responsive: true
-            });
-        });
+    <script src="../js/dataTable.js">
+        
     </script>
+    
+    <script src="../js/script.js">
+       
+    </script>
+    <?php if(isset($alert)) echo $alert?>
 
 </body>
-
 </html>
