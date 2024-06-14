@@ -1,12 +1,3 @@
-<?php
-
-include_once("../classes/User.php");
-include_once("../includes/readData.inc.php");
-include_once("../includes/insertUser.inc.php");
-include_once("../includes/updateUser.inc.php");
-include_once("../includes/deleteUser.inc.php");
-include_once("../includes/deleteUser.inc.php");
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,10 +5,10 @@ include_once("../includes/deleteUser.inc.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIMPLE CRUD OOP</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
 </head>
 
 <body>
@@ -26,12 +17,12 @@ include_once("../includes/deleteUser.inc.php");
             <!--TITLE--->
             <div class="row">
                 <div class="container-sm mt-5 px-2">
-                    <h1>Simple Crud Using PHP</h1>
+                    <h1>Simple Crud Using PHP & AJAX</h1>
                     <p class="fw-normal">Create Update Delete</p>
                 </div>
                 <div class="container-sm mt-4 py-2 d-flex justify-content-end border-top border-bottom border-light-subtle">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertUser">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUser">
                         Add User
                     </button>
                 </div>
@@ -40,18 +31,19 @@ include_once("../includes/deleteUser.inc.php");
                     <table id="myTable" class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">#id</th>
-                                <th scope="col">FirstName</th>
-                                <th scope="col">MiddleName</th>
-                                <th scope="col">LastName</th>
-                                <th scope="col">Age</th>
-                                <th scope="col">Dob</th>
+                                <th scope="col">id</th>
+                                <th scope="col">firstName</th>
+                                <th scope="col">middleName</th>
+                                <th scope="col">lastName</th>
+                                <th scope="col">age</th>
+                                <th scope="col">dob</th>
                                 <th scope="col">email</th>
                                 <th scope="col">job</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <!---
                             <?php foreach ($row as $data) : ?>
                                 <tr>
                                     <td><?= $data['id']?></td>
@@ -70,6 +62,7 @@ include_once("../includes/deleteUser.inc.php");
                                         </button></td>
                                 </tr>
                             <?php endforeach; ?>
+                            -->    
                         </tbody>
                     </table>
                 </div>
@@ -83,15 +76,7 @@ include_once("../includes/deleteUser.inc.php");
 
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-
-    <script src="../js/dataTable.js">
-        
-    </script>
     
-    <script src="../js/script.js">
-       
-    </script>
-    <?php if(isset($alert)) echo $alert?>
-
+    <script src="../js/script.js"></script>
 </body>
 </html>

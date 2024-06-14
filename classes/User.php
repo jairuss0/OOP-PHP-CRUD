@@ -21,12 +21,15 @@ class User extends Query{
     public function deleteUser($userId){
         $this->deleteData($userId);
     }
-
+    // get query status
     public function getQueryStatus(){
         return $this->queryStatus();
     }
     
-
+    // see if the email input is already within database
+    public function evaluateEmail($email){
+        return $this->emailDuplicate($email);
+    }
 }
 
 

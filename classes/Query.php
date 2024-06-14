@@ -8,11 +8,11 @@ class Query extends Db{
     // create,update,delete
 
     //fetch data from database
-    protected $succes;
+    protected $success;
 
     protected function fetchData(){
         try{
-            $sql = "SELECT * FROM user ORDER BY id DESC";
+            $sql = "SELECT * FROM user ORDER BY id ASC";
             $stmt = $this->connected()->prepare($sql);
             $stmt->execute();
             // return the statement result as array
@@ -29,19 +29,17 @@ class Query extends Db{
             $sql = "INSERT INTO user (firstName,middleName,lastName,age,dob,email,job) VALUES(
             :firstName,:middleName,:lastName,:age,:dob,:email,:job)";
             $stmt = $this->connected()->prepare($sql);
-            $this->succes = $stmt->execute(['firstName' => $fname, 
+            $this->success = $stmt->execute(['firstName' => $fname, 
             'middleName' => $mname, 'lastName' => $lname, 'age' => $age, 
             'dob' => $dob, 'email' => $email, 
             'job' => $job]);
 
-            if($this->succes){
+            if($this->success){
                 $this->queryStatus();
                 
             }else{
                 $this->queryStatus();
             }
-
-            // set a sweetAlert here
 
         }catch(PDOException $e){
             echo "Error: ". $e->getMessage();
@@ -53,13 +51,13 @@ class Query extends Db{
             $sql = "UPDATE user SET firstName = :fname, middleName = :mname, lastName = :lname
             ,age = :age, dob = :dob, job = :job where id = :id";   
             $stmt = $this->connected()->prepare($sql);
-            $this->succes = $stmt->execute(['fname' => $fname, 
+            $this->success = $stmt->execute(['fname' => $fname, 
             'mname' => $mname, 'lname' => $lname, 'age' => $age,
             'dob' => $dob,
             'job' => $job, 'id' => $userId]);
 
 
-            if($this->succes){
+            if($this->success){
                 $this->queryStatus();
                 
             }else{
@@ -75,8 +73,8 @@ class Query extends Db{
         try{
             $sql = "DELETE FROM user WHERE id = :id";
             $stmt = $this->connected()->prepare($sql);
-            $this->succes = $stmt->execute(['id' => $userId]);
-            if($this->succes){
+            $this->success = $stmt->execute(['id' => $userId]);
+            if($this->success){
                 $this->queryStatus();
                 
             }else{
@@ -88,10 +86,20 @@ class Query extends Db{
     }
 
     public function queryStatus(){
-        return $this->succes;
+        return $this->success;
     }
     
-    
+    protected function emailDuplicate($email){
+        try{
+            $sql = "SELECT * FROM user WHERE email = :email";
+            $stmt = $this->connected()->prepare($sql);
+            $stmt->execute(['email' => $email]);
+            $this->success = $stmt->fetch();
+           
+        }catch(PDOException $e){
+            echo "Error: ".$e->getMessage();
+        }
+    }
 }
 
 

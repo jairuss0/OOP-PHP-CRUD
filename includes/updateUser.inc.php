@@ -1,8 +1,8 @@
 <?php
-
+include_once("../classes/User.php");
 $user = new User();
 
-if(isset($_POST['updateSubmit'])){
+if (isset($_POST['updateUserSubmit'])) {
 
     $userId = $_POST['userId'];
     $fname = $_POST['fname'];
@@ -11,31 +11,14 @@ if(isset($_POST['updateSubmit'])){
     $dob = $_POST['dob'];
     $age = $_POST['age'];
     $job = $_POST['job'];
+    $alert;
+    $symbol;
 
-    // update user Credentials
+
     $user->updateUser($userId,$fname,$mname,$lname,$age,$dob,$job);
+    $alert = $user->getQueryStatus() ? "user has been Update!" : "Failed updating user!";;
+    $symbol = $alert ? "success" : "error";
+    $message = array('alert' => $alert, 'icon' => $symbol);
 
-    // check the status of the query
-    if($user->getQueryStatus()){
-        $alert = '<script>
-                swal({
-                    title: "Succes!",
-                    text: "user updated!",
-                    icon: "success",
-                });
-            </script>';
-       
-    }
-    else{
-        $alert = '<script>
-                swal({
-                    title: "Error!",
-                    text: "updating failed!",
-                    icon: "success",
-                });
-            </script>';        
-    }
-    
+    echo json_encode($message);
 }
-
-?>
