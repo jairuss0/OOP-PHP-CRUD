@@ -43,26 +43,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!---
-                            <?php foreach ($row as $data) : ?>
-                                <tr>
-                                    <td><?= $data['id']?></td>
-                                    <td><?= $data['firstName'] ?></td>
-                                    <td><?= $data['middleName'] ?></td>
-                                    <td><?= $data['lastName'] ?></td>
-                                    <td><?= $data['age'] ?></td>
-                                    <td><?= $data['dob'] ?></td>
-                                    <td><?= $data['email'] ?></td>
-                                    <td><?= $data['job'] ?></td>
-                                    <td><button type="button" class="btn btn-success updateBtn"  data-bs-toggle="modal" data-bs-target="#updateUser">
-                                             Update
-                                        </button>
-                                        <button type="button" class="btn btn-danger deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteUser">
-                                             Delete
-                                        </button></td>
-                                </tr>
-                            <?php endforeach; ?>
-                            -->    
+                              
                         </tbody>
                     </table>
                 </div>
