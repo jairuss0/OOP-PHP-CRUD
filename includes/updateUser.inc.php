@@ -16,7 +16,7 @@ if (isset($_POST['updateUserSubmit'])) {
 
 
     $user->updateUser($userId,$fname,$mname,$lname,$age,$dob,$job);
-    $alert = $user->getQueryStatus() ? "user has been Update!" : "Failed updating user!";;
+    $alert = $user->getQueryStatus() ? "user has been Updated!" : "Failed updating user!";;
     $symbol = $alert ? "success" : "error";
     $message = array('alert' => $alert, 'icon' => $symbol);
 
